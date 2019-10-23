@@ -10,7 +10,7 @@ else
 
 	# Add trailing slash
 	if [[ ${REDIRECT_TARGET:length-1:1} != "/" ]]; then
-		REDIRECT_TARGET="$REDIRECT_TARGET/"
+		REDIRECT_TARGET="$REDIRECT_TARGET"
 	fi
 
 	echo "Redirecting HTTP requests to ${REDIRECT_TARGET}..."
@@ -20,7 +20,7 @@ cat <<EOF > /etc/nginx/conf.d/default.conf
 server {
 	listen 80;
 
-	rewrite ^/(.*)\$ $REDIRECT_TARGET\$1 permanent;
+	rewrite ^/(.*)\$ $REDIRECT_TARGET permanent;
 }
 EOF
 
